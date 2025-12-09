@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seja Bem Vindo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#3b82f6',
+                            dark: '#2563eb'
+                        },
+                        secondary: {
+                            light: '#10b981',
+                            dark: '#059669'
+                        }
+                    },
+                  
+                    
+                        
+                    
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .light .gradient-text {
+            background-image: linear-gradient(45deg, #3bc1f6, #104bb9);
+        }
+        .dark .gradient-text {
+            background-image: linear-gradient(45deg, #3bc1f6, #104bb9);
+        }
+        .project-card {
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        .theme-toggle {
+            transition: all 0.3s ease;
+        }
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: currentColor;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .icons8-davinci-resolve { 
+
+             display: inline-block;
+             width: 40px;
+             height: 40px;
+            background: url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGRkZGIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciICB2aWV3Qm94PSIwIDAgNTAgNTAiIHdpZHRoPSI1MHB4IiBoZWlnaHQ9IjUwcHgiPjxwYXRoIGQ9Ik0gMjUgMiBDIDEyLjMwOTI4OCAyIDIgMTIuMzA5Mjk3IDIgMjUgQyAyIDM3LjY5MDcwMyAxMi4zMDkyODggNDggMjUgNDggQyAzNy42OTA3MTIgNDggNDggMzcuNjkwNzAzIDQ4IDI1IEMgNDggMTIuMzA5Mjk3IDM3LjY5MDcxMiAyIDI1IDIgeiBNIDI1IDQgQyAzNi42MDk4MzMgNCA0NiAxMy4zOTAxNzUgNDYgMjUgQyA0NiAzNi42MDk4MjUgMzYuNjA5ODMzIDQ2IDI1IDQ2IEMgMTMuMzkwMTY3IDQ2IDQgMzYuNjA5ODI1IDQgMjUgQyA0IDEzLjM5MDE3NSAxMy4zOTAxNjcgNCAyNSA0IHogTSAyNSA4IEMgMjEuMTQgOCAxOCAxMC45NjgyMzQgMTggMTQuNjE1MjM0IEMgMTggMTguMTYxMjM0IDIxLjI4NDQyMiAyMi4xODM2MjUgMjQuMzU3NDIyIDI0Ljc2NTYyNSBDIDI0LjU0MzQyMiAyNC45MjE2MjUgMjQuNzcxIDI0Ljk5ODA0NyAyNSAyNC45OTgwNDcgQyAyNS4yMjkgMjQuOTk4MDQ3IDI1LjQ1NzU3OCAyNC45MjA2NzIgMjUuNjQyNTc4IDI0Ljc2MzY3MiBDIDI4LjcxNTU3OCAyMi4xODE2NzIgMzIgMTguMTYxMjM0IDMyIDE0LjYxNTIzNCBDIDMyIDEwLjk2OTIzNCAyOC44NTkgOC4wMDEgMjUgOCB6IE0gMTUuNDI5Njg4IDI1LjAwNzgxMiBDIDEzLjg2MzcyMyAyNS4wNDg1MzUgMTIuNDA3MzkxIDI1LjM0NzIxOSAxMS4yNDQxNDEgMjYuMDExNzE5IEMgOS43NTUxNDA2IDI2Ljg2MTcxOSA4LjY4NzQyMTkgMjguMjY1OTM3IDguMjMyNDIxOSAyOS45NjA5MzggQyA3Ljc0OTQyMTkgMzEuNzYwOTM3IDguMDI2MTg3NSAzMy43NDMzOTEgOC45OTIxODc1IDM1LjQwMDM5MSBDIDEwLjMzMDE4NyAzNy42OTYzOTEgMTIuNzIxMDk0IDM4Ljk5ODA0NyAxNS4xMjEwOTQgMzguOTk4MDQ3IEMgMTYuMjE0MDk0IDM4Ljk5ODA0NyAxNy4zMDk1OTQgMzguNzI4MjAzIDE4LjMwODU5NCAzOC4xNTgyMDMgQyAyMS40MTQ1OTQgMzYuMzgxMjAzIDIzLjI3NjM3NSAzMS41MTk1NDcgMjMuOTg0Mzc1IDI3LjU2MDU0NyBDIDI0LjA3MDM3NSAyNy4wODE1NDcgMjMuNzk4ODQ0IDI2LjYwODM1OSAyMy4zMzk4NDQgMjYuNDQzMzU5IEMgMjAuOTU3MzQ0IDI1LjU4NzEwOSAxOC4wMzk2MjkgMjQuOTM5OTQxIDE1LjQyOTY4OCAyNS4wMDc4MTIgeiBNIDM0LjU3MjI2NiAyNS4wMDc4MTIgQyAzMS45NjI1MjkgMjQuOTM5OTQxIDI5LjA0NTIzNCAyNS41ODcxMDkgMjYuNjYyMTA5IDI2LjQ0MzM1OSBDIDI2LjIwMzEwOSAyNi42MDgzNTkgMjUuOTI5NjI1IDI3LjA4MTU0NyAyNi4wMTU2MjUgMjcuNTYwNTQ3IEMgMjYuNzIyNjI1IDMxLjUxOTU0NyAyOC41ODU0MDYgMzYuMzgzMjAzIDMxLjY5MTQwNiAzOC4xNTgyMDMgQyAzMi42ODk0MDYgMzguNzI4MjAzIDMzLjc4NDkwNiAzOC45OTgwNDcgMzQuODc4OTA2IDM4Ljk5ODA0NyBDIDM3LjI3NzkwNiAzOC45OTgwNDcgMzkuNjY4NzY2IDM3LjY5NzM5MSA0MS4wMDk3NjYgMzUuNDAwMzkxIEMgNDEuOTc1NzY2IDMzLjc0MzM5MSA0Mi4yNTE1MzEgMzEuNzYxOTM3IDQxLjc2OTUzMSAyOS45NjA5MzggQyA0MS4zMTU1MzEgMjguMjY0OTM4IDQwLjI0NDg1OSAyNi44NjI3MTkgMzguNzU1ODU5IDI2LjAxMTcxOSBDIDM3LjU5MjYwOSAyNS4zNDcyMTkgMzYuMTM4MTA3IDI1LjA0ODUzNSAzNC41NzIyNjYgMjUuMDA3ODEyIHoiLz48L3N2Zz4=') 50% 50% no-repeat;
+            background-size: 100%; 
+        }
+
+        #anim{
+            opacity: 0;
+            transform: translateY(30px);
+            animation: moveup 0.7s linear forwards;
+        }
+        @keyframes moveup{
+            100%{
+                opacity: 1;
+                transform: translateY(0px) ;
+            }
+        }
+
+        .olá{
+            animation-delay: 0.5s ;
+        }
+
+    </style>
+</head>
+<body class="light bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- Header/Navigation -->
+    <header class="fixed w-full z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+            <nav class="flex items-center justify-between">
+                <a href="#" class="text-2xl font-bold gradient-text">Enzo</a>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link">Início</a>
+                    
+                    <a href="#projects" class="nav-link">Portfólio</a>
+                    
+                    <a href="#contact" class="nav-link">Contato</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="theme-toggle p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                    
+                    <button id="mobile-menu-button" class="md:hidden p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 shadow-lg">
+            <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
+                <a href="#home" class="nav-link">Início</a>
+                
+                <a href="#projects" class="nav-link">Portfólio</a>
+                
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center pt-20">
+        <div class="container mx-auto px-6 py-20">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0 animate-fade-in">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4" id="anim" class="Olá" >Olá! Me chamo <br> <span class="gradient-text">Enzo Palheta</span></h1>
+                    <div>
+                    <h2 class="text-2xl md:text-3xl font-semibold mb-6" id="anim" style="animation-delay: 0.4s;">Videomaker e Editor de Vídeos</h2>
+                    </div>
+                    <p class="text-lg mb-8 text-gray-600 dark:text-gray-300 max-w-lg" id="anim" style="animation-delay: 0.6s;">
+                        Sou estudante de Cinema e Mídias Digitais na Universidade Católica de Brasília, com três anos de experiência em filmagem e edição de vídeo. Já participei de diversos projetos audiovisuais e tive meu trabalho reconhecido com o prêmio de Melhor Documentário na mostra da minha universidade. Busco oportunidades de estágio para ampliar minha experiência, colaborar com novas equipes e continuar desenvolvendo meu olhar criativo no audiovisual.
+                        
+                    </p>
+                    <div class="flex space-x-4" id="anim" style="animation-delay: 0.8s;">
+                        <a href="#contact" class="px-6 py-3 bg-primary-light dark:bg-primary-dark text-white rounded-lg hover:opacity-90 transition-opacity" >
+                            Contato
+                        </a>
+                        <a href="#projects" class="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                            Portfólio
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center animate-slide-up" >
+                    <div  id="anim" class="relative w-94 h-94 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-primary-light dark:border-primary-dark" style="height: 35vh; width: 35vh;">
+                        <img src="FOTO DE PERFIL CURRICULO@2x.png" 
+                             alt="Profile" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-primary-light dark:bg-primary-dark opacity-10"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center">Meus <span class="gradient-text">Projetos</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl">
+                    <a href="https://www.youtube.com/watch?v=ZK_AiH2UGns">
+                    <div class="h-48 overflow-hidden">
+                        <img src="Gemini_Generated_Image_bpex6ibpex6ibpex.png" 
+                             alt="Project 1" 
+                             
+                             class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                    </div>
+
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Documentário</h3>
+                         <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Filmagem</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Iluminação</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Colorização</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Participei da produção de um Documentário em uma das disciplinas da Universidade.
+                            
+                        </p>
+                        
+                        
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl">
+                    <a href="https://www.instagram.com/reel/DFjZEang3CA/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==">
+                    <div class="h-48 overflow-hidden">
+                        <img src="Gemini_Generated_Image_qaf1x3qaf1x3qaf1.png" 
+                             alt="Project 2" 
+                             class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Vídeo Cover</h3>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Captação, mixagem e masterização do som</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Gravação e edição do vídeo</span>
+                           <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Produzi um cover do zero, feito em casa.
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl">
+                    <a href="https://youtu.be/Eh1hHOTCdws">
+                    <div class="h-48 overflow-hidden">
+                    
+                        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" 
+                             alt="Project 3" 
+                             class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Curta-metragem</h3>
+                          <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Filmagem</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Edição e colorização</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Iluminação</span>
+                        </div>
+                        
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Produzi um Curta-metragem para uma disciplina da Universidade.
+                        </p>
+                      
+                    </div>
+                </div>
+
+                
+                
+                    
+                    
+                
+                
+
+                    
+                  
+
+               
+               
+
+                
+
+                 
+                
+                
+                    
+                    
+                
+            </div>
+            
+            
+        </div>
+                     
+        
+    </section>
+
+    
+
+
+
+
+            
+            
+            
+       
+   
+
+  
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center">Fale <span class="gradient-text">Comigo</span></h2>
+            
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-12 md:mb-0 md:pr-8">
+                    <h3 class="text-2xl font-semibold mb-6">Informações de Contato</h3>
+                    
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4">
+                                <i class="fas fa-envelope text-primary-light dark:text-primary-dark"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Email</h4>
+                                <p class="text-gray-600 dark:text-gray-300">enzobolsipalheta@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4">
+                                <i class="fas fa-phone-alt text-primary-light dark:text-primary-dark"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Telefone e Whatsapp</h4>
+                                <p class="text-gray-600 dark:text-gray-300">+55 (61) 99333-1103</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4">
+                                <i class="fas fa-map-marker-alt text-primary-light dark:text-primary-dark"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Local</h4>
+                                <p class="text-gray-600 dark:text-gray-300">Brasília, DF</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-semibold mb-4">Me siga</h4>
+                        <div class="flex space-x-1" style="margin-inline: -0.2rem;">
+
+                            <a href="https://www.linkedin.com/in/enzo-palheta-665b02287/overlay/contact-info/" class="p-3 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors" style="margin-inline-end: 0.5rem;">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            
+                          
+                            <a href="https://www.instagram.com/enzopalheta/" class="p-3 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 dark:bg-gray-800 py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="text-2xl font-bold gradient-text">Enzo</a>
+                    <p class="mt-2 text-gray-600 dark:text-gray-300">© 2025 Todos os Direitos Reservados</p>
+                </div>
+                
+                
+                
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        // Check for saved user preference or use system preference
+        const savedTheme = localStorage.getItem('theme') || 
+                          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        html.classList.add(savedTheme);
+        
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            const theme = html.classList.contains('dark') ? 'dark' : 'light';
+            localStorage.setItem('theme', theme);
+        });
+        
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Smooth scrolling for all links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add animation classes when elements come into view
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-fade-in, .animate-slide-up');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Set initial state for animated elements
+        document.querySelectorAll('.animate-fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.animation = 'fadeIn 0.5s ease-in-out forwards';
+        });
+        
+        document.querySelectorAll('.animate-slide-up').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.animation = 'slideUp 0.5s ease-out forwards';
+        });
+        
+        // Add scroll event listener
+        window.addEventListener('scroll', animateOnScroll);
+        // Trigger once on page load
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
